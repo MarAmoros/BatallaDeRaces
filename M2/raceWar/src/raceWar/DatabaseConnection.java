@@ -33,27 +33,31 @@ public class DatabaseConnection {
 				update = "Insert into warriors (warrior_id,warrior_name,warrior_image_path,warrior_race) values (?,?,?,?)";
 				PreparedStatement pst = con.prepareStatement(update);
 				
-				Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+//				Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 				ResultSet rs;
 				
-				rs = st.executeQuery(query);
-				rs = st.getResultSet();
-				rs.last();
-				int id = rs.getInt(1);
-				
-				
-				for (Character c: characters) {
-					id += 1;
-					c.setId(id);
-				}
-				
-				for (Character c: characters) {
-					pst.setInt(1, c.getId());
-					pst.setString(2, c.getName());
-					pst.setString(3, c.getImage_path());
-					pst.setString(4, c.getRace());
-					pst.executeUpdate();
-				}
+//				rs = st.executeQuery(query);
+//				rs = st.getResultSet();
+//				rs.last();
+//				int id;
+//				if (1 == 1) 
+//					id = 0;
+//				else
+//					id = rs.getInt(1);
+//				
+//				
+//				for (Character c: characters) {
+//					id += 1;
+//					c.setId(id);
+//				}
+//				
+//				for (Character c: characters) {
+//					pst.setInt(1, c.getId());
+//					pst.setString(2, c.getName());
+//					pst.setString(3, c.getImage_path());
+//					pst.setString(4, c.getRace());
+//					pst.executeUpdate();
+//				}
 				
 //				update = "Delete from warriors where id=?";
 //				pst = con.prepareStatement(update);
@@ -62,7 +66,11 @@ public class DatabaseConnection {
 //					pst.executeUpdate();
 //				}
 				
-				//SELECT
+				//--
+				//SAMPLE QUERIES
+				//--
+				
+				//SHOW WARRIORS
 				pst = con.prepareStatement(query);
 				rs = pst.executeQuery(query);
 				while(rs.next()) {
@@ -70,7 +78,24 @@ public class DatabaseConnection {
 					System.out.println("    NAME: " + rs.getString(2));
 					System.out.println("    RACE: " + rs.getString(4));
 				}
-			
+				
+				
+				//RANKING
+				pst = con.prepareStatement("select * from players order by player_points desc");
+				rs = pst.executeQuery("select * from players order by player_points desc");
+				
+				int ranking_num = 0;
+				
+				while(rs.next()) {
+					
+					ranking_num += 1;
+					System.out.print(ranking_num);
+					System.out.print(")  NAME: " + rs.getString(2));
+					System.out.print("|    SCORE: " + rs.getInt(3));
+					System.out.print("|    DAMAGE CAUSED: " + rs.getInt(4));
+					System.out.println("|    DAMAGE RECEIVED: " + rs.getInt(5));
+				}
+				
 			} catch (ClassNotFoundException e) {
 				System.out.println("Driver could not be loaded");
 				e.printStackTrace();
