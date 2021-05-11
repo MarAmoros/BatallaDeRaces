@@ -4,7 +4,7 @@ CREATE TABLE weapons (weapon_id integer,weapon_name varchar(20),weapon_image_pat
 
 CREATE TABLE warriors (warrior_id integer,warrior_name varchar(30),warrior_image_path varchar(200),warrior_race varchar(5));
 
-CREATE TABLE players (player_id integer,player_name varchar(30));
+CREATE TABLE players (player_id integer,player_name varchar(30),damage_caused integer,damage_recieved integer,battle_points integer);
 
 CREATE TABLE battle (battle_id integer,player_id integer,warrior_id integer,warrior_weapon_id integer,opponent_id integer,opponent_weapon_id integer,damage_caused integer,damage_recieved integer,battle_points integer);
 
