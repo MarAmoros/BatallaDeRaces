@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class DatabaseConnection {
 
 		public static void main(String[] args) {
-			String url = "jdbc:mysql://localhost/race_war?serverTimezone=UTC";
+			String url = "jdbc:mysql://localhost/race_war2?serverTimezone=UTC";
 			String user = "root";
 			String password = "mysql8024";
 			String query = "select * from warriors";
@@ -36,23 +36,23 @@ public class DatabaseConnection {
 				Statement st = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 				ResultSet rs;
 				
-				//--
-				//SAMPLE QUERIES
-				//--
+//------------------------------------------
+//SAMPLE QUERIES
+				
 				
 				//CREATE WARRIOR
-				String warrior_name = "";
-				String warrior_image = "";
-				String warrior_race = "";
-				
-				rs = st.executeQuery("select * from warriors");
-				rs = st.getResultSet();
-				
-				rs.moveToInsertRow();
-				rs.updateString(2, warrior_name);
-				rs.updateString(3, warrior_image);
-				rs.updateString(4, warrior_race);
-				rs.insertRow();
+//				String warrior_name = "Pepe";
+//				String warrior_image = "imagen.png";
+//				int warrior_race = 1;
+//				
+//				rs = st.executeQuery("select * from warriors");
+//				rs = st.getResultSet();
+//				
+//				rs.moveToInsertRow();
+//				rs.updateString(2, warrior_name);
+//				rs.updateString(3, warrior_image);
+//				rs.updateInt(4, warrior_race);
+//				rs.insertRow();
 				
 				
 				//SHOW WARRIORS
@@ -64,57 +64,70 @@ public class DatabaseConnection {
 //					System.out.println("    RACE: " + rs.getString(4));
 //				}
 //				
-			//SELECT WARRIORS
+			
+			
+//---------------------------------------------
 				
-				Character player;
-				Character enemy;
+//AFTER BATTLE
+		//STORE BATTLE INFO
+				//get battle info
+//				int pid = 1;
+//				int wid = 4;
+//				int wwid = 5;
+//				int oid = 5;
+//				int owid = 2;
+//				int dc = 50;
+//				int dr = 25;
+//				int bp = 30;
 				
-				if(warrior_race == "elf") {
-					player = new Elf(warrior_name,warrior_image);
-				}
-				else if(warrior_race == "dwarf") {
-					player = new Dwarf(warrior_name,warrior_image);
-				}
-				else {
-					player = new Human(warrior_name,warrior_image);
-				}
+				//save battle info
+//				rs = st.executeQuery("select * from battle");
+//				rs = st.getResultSet();
+//				rs.moveToInsertRow();
+//				rs.updateInt(2, pid);
+//				rs.updateInt(3, wid);
+//				rs.updateInt(4, wwid);
+//				rs.updateInt(5, oid);
+//				rs.updateInt(6, owid);
+//				rs.updateInt(7, dc);
+//				rs.updateInt(9, dr);
+//				rs.updateInt(9, bp);
+//				rs.insertRow();
+				
+	//FIGHT AGAIN?
+		//YES
+			//WIN
+				//save score in variable
+			//LOSE
+				//store ranking info
+//				rs = st.executeQuery("select * from ranking");
+//				rs = st.getResultSet();
+//				rs.moveToInsertRow();
+//				rs.updateInt(1, pid);
+//				rs.updateInt(2, bp);
+//				rs.updateInt(3, wid);
+//				rs.insertRow();
+//				//create player with new name
+//				rs = st.executeQuery("select * from players");
+//				rs = st.getResultSet();
+//				rs.moveToInsertRow();
+//				rs.updateString(2, "same name as before");
+//				rs.insertRow();
+		//NO
+				//store ranking info
+//				rs = st.executeQuery("select * from ranking");
+//				rs = st.getResultSet();
+//				rs.moveToInsertRow();
+//				rs.updateInt(1, pid);
+//				rs.updateInt(2, bp);
+//				rs.updateInt(3, wid);
+//				rs.insertRow();
+			
 				
 				
+//----------------------------------------------------------------				
 				
-			//STORE BATTLE INFO
-				int pid = 0;
-				int wid = 0;
-				int wwid = 0;
-				int oid = 0;
-				int owid = 0;
-				int dc = 0;
-				int dr = 0;
-				int bp = 0;
-				
-				//battle
-				pst = con.prepareStatement("select * from battle");
-				rs = pst.executeQuery();
-				rs.moveToInsertRow();
-				rs.updateInt(2, pid);
-				rs.updateInt(3, wid);
-				rs.updateInt(4, wwid);
-				rs.updateInt(5, oid);
-				rs.updateInt(6, owid);
-				rs.updateInt(7, dc);
-				rs.updateInt(9, dr);
-				rs.updateInt(9, bp);
-				rs.insertRow();
-				
-				//ranking
-				pst = con.prepareStatement("select * from ranking");
-				rs = pst.executeQuery();
-				rs.moveToInsertRow();
-				rs.updateInt(1, pid);
-				rs.updateInt(2, bp);
-				rs.updateInt(3, wid);
-				rs.insertRow();
-				
-			//RANKING
+		//RANKING
 				//GET PLAYER NAMES
 				ArrayList<String> players = new ArrayList<String>();
 				pst = con.prepareStatement("select * from players");
