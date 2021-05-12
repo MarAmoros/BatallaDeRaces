@@ -9,7 +9,7 @@ public class Dwarf extends Character{
 		setStrength(6);
 		setDefense(4);
 		setAgility(5);
-		setSpeed(3 );
+		setSpeed(3);
 		setImage_path(image_path);
 		setRace("dwarf");
 	}
